@@ -1,5 +1,8 @@
 # React with TypeScript on the local server:
 
+to start:
+`npm start` + `npm run server`
+
 1. The data in the table is loaded from the local server.
 2. Material UI was used
 3. "Infinite Loader" was used for loading new data.
