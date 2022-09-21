@@ -8,6 +8,4 @@
 6. Fields contain validation
 7. Form has checks before submitting
 
-
-
-
+[DEMO PAGE](https://pavlomarkov.github.io/darly_solutions_react/)
