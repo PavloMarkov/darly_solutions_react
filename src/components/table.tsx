@@ -40,7 +40,10 @@ export const TableData: React.FC<Props> = (props) => {
 
   return (
     <div className="container">
-      <TableContainer component={Paper}>
+      <TableContainer
+        component={Paper}
+        elevation={3}
+      >
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
