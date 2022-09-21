@@ -1,7 +1,36 @@
+body {
+  box-sizing: border-box;
+}
 .starter {
   font-size: 18px;
 }
 
 .error {
   outline-color: red;
+}
+
+.section {
+  max-width: 1080px;
+  margin: 30px auto;
+}
+
+.userData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.userData__input {
+  margin: 10px;
+}
+
+.userData__buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userData__btn {
+  display: block;
+  margin: 15px;
 }

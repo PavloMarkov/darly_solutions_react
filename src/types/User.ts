@@ -1,9 +1,9 @@
 // eslint-disable-next-line no-shadow
-export enum UserGender {
-  M = 'M',
-  F = 'F',
-  NULL = '',
-}
+// export enum UserGender {
+//   M = 'M',
+//   F = 'F',
+//   NULL = '',
+// }
 
 export interface User {
   id: number;
@@ -11,5 +11,5 @@ export interface User {
   last_name: string;
   phone: string;
   email: string;
-  gender: keyof UserGender;
+  gender: 'M' | 'F' | '';
 }

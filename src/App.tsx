@@ -1,5 +1,6 @@
 /* eslint-disable react/no-this-in-sfc */
 /* eslint-disable no-console */
+import { Box, CircularProgress, Typography } from '@mui/material';
 import React, { useCallback, useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { dataByPage } from './api/constants/const';
@@ -37,8 +38,6 @@ export const App: React.FC = () => {
 
         const total = Number(response.headers.get('X-Total-Count'));
 
-        console.log(total);
-
         setHasMore(total > page * dataByPage);
       })
       .catch(e => setError(e));
@@ -53,16 +52,31 @@ export const App: React.FC = () => {
             pageStart={1}
             loadMore={loadMoreUsers}
             hasMore={hasMore}
-            loader={<div className="loader" key={0}>Loading ...</div>}
+            loader={(
+              <Box
+                sx={{
+                  display: 'flex',
+                  margin: '20px',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                key={`${page * dataByPage}`}
+              >
+                <CircularProgress />
+              </Box>
+            )}
           >
+            <Typography variant="h6" gutterBottom>
+              All our fake users:
+            </Typography>
             <TableData users={users} />
           </InfiniteScroll>
         )
         : (
-          <p>
+          <Typography variant="h5" gutterBottom>
             Error:
             { error}
-          </p>
+          </Typography>
         )}
     </main>
   );
