@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import {
   Alert,
@@ -34,9 +35,15 @@ export const InputArea: React.FC<Props> = (props) => {
     setIsOpenSneckBar(false);
   };
 
-  const isUserInfoFull = (userName !== '') && (userLastName !== '') && (gender !== '')
-    && (userPhone !== '') && (userEmail !== '' && /\S+@\S+\.\S+/.test(userEmail));
-  const isInfoToClear = (userName !== '') || (userLastName !== '') || (gender !== '')
+  const isCorrectEmail = /\S+@\S+\.\S+/.test(userEmail);
+  const isCorrectPhone = /\(?(\d{3})\)?[-\.\s]?(\d{3})[-\.\s]?(\d{4})/.test(userPhone);
+  const isCorrectGender = (gender !== '');
+  const isCorrectName = /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/.test(userName);
+  const isCorrectLastName = /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/.test(userLastName);
+
+  const isUserInfoFull = isCorrectName && isCorrectLastName && isCorrectGender
+    && isCorrectPhone && isCorrectEmail;
+  const isInfoToClear = (userName !== '') || (userLastName !== '') || isCorrectGender
   || (userPhone !== '') || (userEmail !== '');
 
   const clearInputs = () => {
@@ -66,7 +73,7 @@ export const InputArea: React.FC<Props> = (props) => {
           </Typography>
           <div className="userData__input">
             <TextField
-              error={userName === ''}
+              error={!isCorrectName}
               id="outlined-error"
               type="text"
               label="Name"
@@ -78,7 +85,7 @@ export const InputArea: React.FC<Props> = (props) => {
           </div>
           <div className="userData__input">
             <TextField
-              error={userLastName === ''}
+              error={!isCorrectLastName}
               id="outlined-error"
               type="text"
               label="Last Name"
@@ -90,7 +97,7 @@ export const InputArea: React.FC<Props> = (props) => {
           </div>
           <div className="userData__input">
             <TextField
-              error={userPhone === ''}
+              error={!isCorrectPhone}
               id="outlined-error"
               type="text"
               label="Phone"
@@ -103,7 +110,7 @@ export const InputArea: React.FC<Props> = (props) => {
           <div className="userData__input">
             <div>
               <TextField
-                error={(userEmail === '') || !(/\S+@\S+\.\S+/.test(userEmail))}
+                error={!isCorrectEmail}
                 id="outlined-error"
                 type="email"
                 label="Email"
@@ -120,7 +127,7 @@ export const InputArea: React.FC<Props> = (props) => {
               <Select
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
-                error={gender === ''}
+                error={!isCorrectGender}
                 value={gender}
                 label="Gender"
                 onChange={(event) => setGender(event.target.value)}
