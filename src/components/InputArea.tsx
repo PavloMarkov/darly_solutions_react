@@ -108,18 +108,16 @@ export const InputArea: React.FC<Props> = (props) => {
             />
           </div>
           <div className="userData__input">
-            <div>
-              <TextField
-                error={!isCorrectEmail}
-                id="outlined-error"
-                type="email"
-                label="Email"
-                placeholder="Email"
-                helperText="Enter your e-mail"
-                value={userEmail}
-                onChange={(e) => setUserEmail(e.target.value)}
-              />
-            </div>
+            <TextField
+              error={!isCorrectEmail}
+              id="outlined-error"
+              type="email"
+              label="Email"
+              placeholder="Email"
+              helperText="Enter your e-mail"
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
+            />
           </div>
           <div className="userData__input">
             <FormControl sx={{ m: 1, minWidth: 120 }}>
